@@ -14,7 +14,7 @@ public class Tester {
 		sql = sql + "VALUES";
 //		sql = sql + “(‘Doe’, ‘John’, ‘john.doe@pitt.edu’, ‘test123’); “;
 		// Query Successful
-		
+		// Just a little change
 		db.executeQuery(query);
 	
 		
