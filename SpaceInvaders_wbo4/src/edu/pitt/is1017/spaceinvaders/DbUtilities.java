@@ -56,13 +56,14 @@ public class DbUtilities {
      */
     private void createDbConnection(){
         try {
-        	// Build connection string
+        	// Build connection string as per Lecture 3 - MySQL, JDBC, SQL Queries Slide 15
             String mySqlConn = "jdbc:mysql://" + this.hostName + "/" + this.dbName + "?user=" + this.dbUserName + "&password=" + this.dbPassword;
-            //System.out.println("Establishing DB connection:\n"+mySqlConn);//hostName = "+hostName+"\ndbName = "+dbName+"\ndbUserName = "+dbUserName+"\ndbPassword = "+dbPassword+"\n");
+            System.out.println("Establishing DB connection:\n"+mySqlConn);//hostName = "+hostName+"\ndbName = "+dbName+"\ndbUserName = "+dbUserName+"\ndbPassword = "+dbPassword+"\n");
             // Instantiate the MySQL database connector driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             // Connect to the database
             this.conn = DriverManager.getConnection(mySqlConn);
+            System.out.println("Connection Successful");
         } catch (Exception e) {
             System.err.println(e.toString());
             System.err.println("Unable to connect to database");
@@ -102,13 +103,59 @@ public class DbUtilities {
             }
             Statement statement = this.conn.createStatement();
             statement.executeUpdate(sql); // execute query
+            
             return true;
         } catch (Exception e) {
         	e.printStackTrace(); // debug
         }
         return false;
     }
-    public void closeConnection(){
-    	
+    /**
+     * Closes the ResultSet
+     * @param sql - SQL resultSet
+     * @return true if execution succeeded, false if failed 
+     */
+    public boolean closeResultSet(ResultSet rs){
+    	try {
+			rs.close();
+			System.out.println("ResultSet Closed Successfully");
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Failed to Close ResultSet");
+			e.printStackTrace();// debug
+		}
+		return false;
+    }
+    /**
+     * Closes the Statement
+     * @param sql - SQL statement
+     * @return true if execution succeeded, false if failed 
+     */
+    public boolean closeStatement(Statement ps ){
+    	try {
+			ps.close();
+			System.out.println("Statement Closed Successfully");
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Failed to Close Statement");
+			e.printStackTrace();// debug
+		}
+		return false;
+    }
+    /**
+     * Closes the Database Connection
+     * @param sql - SQL connection
+     * @return true if execution succeeded, false if failed 
+     */
+    public boolean closeConnection(){
+    	try {
+			this.conn.close();
+			System.out.println(" Database Connection Closed Successfully");
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Failed to Close Database Connection");
+			e.printStackTrace();// debug
+		}
+		return false;
     }
 }
