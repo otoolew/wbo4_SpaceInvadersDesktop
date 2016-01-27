@@ -1,5 +1,7 @@
 package edu.pitt.is1017.spaceinvaders;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author William O'Toole
@@ -36,7 +38,7 @@ public class RegisterGUI extends javax.swing.JFrame {
         lblRegPassword = new javax.swing.JLabel();
         txtRegPassword = new javax.swing.JPasswordField();
         lblRegConfirm = new javax.swing.JLabel();
-        txtRegLastNAme = new javax.swing.JTextField();
+        txtRegLastName = new javax.swing.JTextField();
         txtRegConfirm = new javax.swing.JPasswordField();
         btnRegCancel = new javax.swing.JButton();
         btnRegRegister = new javax.swing.JButton();
@@ -89,8 +91,8 @@ public class RegisterGUI extends javax.swing.JFrame {
         lblRegConfirm.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblRegConfirm.setText("Confirm Password:");
 
-        txtRegLastNAme.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtRegLastNAme.addActionListener(new java.awt.event.ActionListener() {
+        txtRegLastName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtRegLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRegLastNAmeActionPerformed(evt);
             }
@@ -129,7 +131,7 @@ public class RegisterGUI extends javax.swing.JFrame {
                     .addComponent(lblRegFirstName))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRegLastNAme)
+                    .addComponent(txtRegLastName)
                     .addComponent(txtRegFirstName)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +157,7 @@ public class RegisterGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegLastName)
-                    .addComponent(txtRegLastNAme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRegLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail2)
@@ -204,7 +206,7 @@ public class RegisterGUI extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void txtRegFirstNameActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        
     }                                               
 
     private void txtRegLastNAmeActionPerformed(java.awt.event.ActionEvent evt) {                                               
@@ -224,13 +226,32 @@ public class RegisterGUI extends javax.swing.JFrame {
     }                                             
 
     private void btnRegCancelActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+    	System.exit(0);
     }                                            
 
-    private void btnRegRegisterActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-    }                                              
-
+    private void btnRegRegisterActionPerformed(java.awt.event.ActionEvent evt) { 
+    	char[] pass = txtRegPassword.getPassword();   	
+    	String password = pass.toString();
+    	
+    	User newUser = new User(txtRegLastName.getText(), txtRegFirstName.getText(), txtRegEmail.getText(), password);
+    	newUser.saveUserInfo();
+    } 
+    
+    /**
+     *@param lastName
+     *@param firstName
+     *@param email
+     *@param password
+     *@return True of entered values are not null
+     */
+    public boolean checkForNull(String l, String f, String em, String ps){
+    	if(l==null|| f==null||em==null||ps==null){
+    		JOptionPane.showMessageDialog(null, "Please Make sure all fields are valid.");
+    		return false;
+    	}   	
+		return true;    	
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -265,8 +286,7 @@ public class RegisterGUI extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify                     
+    // GUI Variables declaration                    
     private javax.swing.JButton btnRegCancel;
     private javax.swing.JButton btnRegRegister;
     private javax.swing.JPanel jPanel1;
@@ -283,7 +303,7 @@ public class RegisterGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtRegConfirm;
     private javax.swing.JTextField txtRegEmail;
     private javax.swing.JTextField txtRegFirstName;
-    private javax.swing.JTextField txtRegLastNAme;
+    private javax.swing.JTextField txtRegLastName;
     private javax.swing.JPasswordField txtRegPassword;
-    // End of variables declaration                   
+    // End of GUI variables declaration                   
 }
