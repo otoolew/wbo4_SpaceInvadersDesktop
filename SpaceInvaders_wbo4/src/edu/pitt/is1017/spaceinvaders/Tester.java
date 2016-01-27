@@ -54,6 +54,24 @@ public class Tester {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+//		 try {
+//	         Connection con = DriverManager.getConnection
+//	         ("jdbc:derby://localhost:1527/testDb","username",
+//	         "password");
+//	         Statement stmt = con.createStatement();
+//	         ResultSet rs = stmt.executeQuery
+//	         ("SELECT * FROM employee");
+//	         System.out.println("id  name    job");
+//	         while (rs.next()) {
+//	            int id = rs.getInt("id");
+//	            String name = rs.getString("name");
+//	            String job = rs.getString("job");
+//	            System.out.println(id+"   "+name+"    "+job);
+//	         }
+//	      }
+//	      catch(SQLException e){
+//	         System.out.println("SQL exception occured" + e);
+//	      }
 	}
 
 }
