@@ -20,10 +20,6 @@ public class User {
 	 * (select from users) for that userID and sets appropriate class properties.
 	 */
 	public User(int uID) {
-		userID = uID;
-		
-		
-		DbUtilities db = new DbUtilities();
 		
 	}
 	
@@ -47,15 +43,10 @@ public class User {
 	 * @param receives user password as an argument, inserts data into database
 	 */
 	public User(String lName, String fName, String em, String pass) {
-		
+
 	}
 	
 	public void saveUserInfo(){
-		DbUtilities db = new DbUtilities();
-		String sql = "INSERT INTO alieninvasion.users ";
-		sql = sql +"(lastName,firstName,email,password) ";
-		sql = sql +"VALUES ";
-		sql = sql +"('"+lastName+"','"+firstName+"','"+email+"','"+password+"');";
-		System.out.println(sql);
+		
 	}
 }
