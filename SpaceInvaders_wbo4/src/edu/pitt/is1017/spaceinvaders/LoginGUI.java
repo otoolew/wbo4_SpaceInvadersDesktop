@@ -4,7 +4,6 @@ package edu.pitt.is1017.spaceinvaders;
  *
  * @author William O'Toole
  */
-@SuppressWarnings("serial")
 public class LoginGUI extends javax.swing.JFrame {
 
 	/**
@@ -23,7 +22,6 @@ public class LoginGUI extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
-		jLabel2 = new javax.swing.JLabel();
 		sepTitle = new javax.swing.JSeparator();
 		lblTitle = new javax.swing.JLabel();
 		pnlLogin = new javax.swing.JPanel();
@@ -35,9 +33,7 @@ public class LoginGUI extends javax.swing.JFrame {
 		btnLogRegister = new javax.swing.JButton();
 		btnLogCancel = new javax.swing.JButton();
 		lblLogRegistationInfo = new javax.swing.JLabel();
-		sepTitle1 = new javax.swing.JSeparator();
-
-		jLabel2.setText("jLabel2");
+		sepBottom = new javax.swing.JSeparator();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,7 +141,7 @@ public class LoginGUI extends javax.swing.JFrame {
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addGap(0, 15, Short.MAX_VALUE)))
 						.addContainerGap())
-				.addComponent(sepTitle1));
+				.addComponent(sepBottom));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addGap(11, 11, 11).addComponent(lblTitle)
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -154,7 +150,7 @@ public class LoginGUI extends javax.swing.JFrame {
 				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 				.addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, Short.MAX_VALUE)
-				.addComponent(sepTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
+				.addComponent(sepBottom, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
 						javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
 		pack();
@@ -201,15 +197,12 @@ public class LoginGUI extends javax.swing.JFrame {
 					break;
 				}
 			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		// </editor-fold>
+
 		// </editor-fold>
 
 		/* Create and display the form */
@@ -224,14 +217,13 @@ public class LoginGUI extends javax.swing.JFrame {
 	private javax.swing.JButton btnLogCancel;
 	private javax.swing.JButton btnLogLogin;
 	private javax.swing.JButton btnLogRegister;
-	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel lblLogEmail;
 	private javax.swing.JLabel lblLogPassword;
 	private javax.swing.JLabel lblLogRegistationInfo;
 	private javax.swing.JLabel lblTitle;
 	private javax.swing.JPanel pnlLogin;
+	private javax.swing.JSeparator sepBottom;
 	private javax.swing.JSeparator sepTitle;
-	private javax.swing.JSeparator sepTitle1;
 	private javax.swing.JTextField txtLogEmail;
 	private javax.swing.JPasswordField txtLogPassword;
 	// End of variables declaration
