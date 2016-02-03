@@ -1,11 +1,5 @@
 package edu.pitt.is1017.spaceinvaders;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
-import javax.crypto.EncryptedPrivateKeyInfo;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author JACK
@@ -28,29 +22,22 @@ public class RegisterGUI extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
-		lblEmail = new javax.swing.JLabel();
-		jTextField1 = new javax.swing.JTextField();
 		lblTitle = new javax.swing.JLabel();
-		sepTitle = new javax.swing.JSeparator();
-		jPanel1 = new javax.swing.JPanel();
+		sepTop = new javax.swing.JSeparator();
+		pnlInput = new javax.swing.JPanel();
 		lblRegFirstName = new javax.swing.JLabel();
 		txtRegFirstName = new javax.swing.JTextField();
 		lblRegLastName = new javax.swing.JLabel();
-		lblEmail2 = new javax.swing.JLabel();
-		txtRegEmail = new javax.swing.JTextField();
+		lblEmail = new javax.swing.JLabel();
+		txtRegConfirm = new javax.swing.JTextField();
 		lblRegPassword = new javax.swing.JLabel();
-		txtRegPassword = new javax.swing.JPasswordField();
 		lblRegConfirm = new javax.swing.JLabel();
 		txtRegLastName = new javax.swing.JTextField();
-		txtRegConfirm = new javax.swing.JPasswordField();
 		btnRegCancel = new javax.swing.JButton();
 		btnRegRegister = new javax.swing.JButton();
-		sepTitle1 = new javax.swing.JSeparator();
-
-		lblEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-		lblEmail.setText("Email:");
-
-		jTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+		txtRegEmail = new javax.swing.JTextField();
+		txtRegPassword = new javax.swing.JTextField();
+		sepBottom = new javax.swing.JSeparator();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,25 +58,18 @@ public class RegisterGUI extends javax.swing.JFrame {
 		lblRegLastName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 		lblRegLastName.setText("Last Name:");
 
-		lblEmail2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-		lblEmail2.setText("Email:");
+		lblEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+		lblEmail.setText("Email:");
 
-		txtRegEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-		txtRegEmail.addActionListener(new java.awt.event.ActionListener() {
+		txtRegConfirm.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+		txtRegConfirm.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				txtRegEmailActionPerformed(evt);
+				txtRegConfirmActionPerformed(evt);
 			}
 		});
 
 		lblRegPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 		lblRegPassword.setText("Password:");
-
-		txtRegPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-		txtRegPassword.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				txtRegPasswordActionPerformed(evt);
-			}
-		});
 
 		lblRegConfirm.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 		lblRegConfirm.setText("Confirm Password:");
@@ -98,13 +78,6 @@ public class RegisterGUI extends javax.swing.JFrame {
 		txtRegLastName.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				txtRegLastNameActionPerformed(evt);
-			}
-		});
-
-		txtRegConfirm.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-		txtRegConfirm.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				txtRegConfirmActionPerformed(evt);
 			}
 		});
 
@@ -124,78 +97,91 @@ public class RegisterGUI extends javax.swing.JFrame {
 			}
 		});
 
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		txtRegEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+		txtRegEmail.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				txtRegEmailActionPerformed(evt);
+			}
+		});
+
+		txtRegPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+		txtRegPassword.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				txtRegPasswordActionPerformed(evt);
+			}
+		});
+
+		javax.swing.GroupLayout pnlInputLayout = new javax.swing.GroupLayout(pnlInput);
+		pnlInput.setLayout(pnlInputLayout);
+		pnlInputLayout.setHorizontalGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(pnlInputLayout.createSequentialGroup()
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 								.addComponent(lblRegLastName).addComponent(lblRegFirstName))
 						.addGap(71, 71, 71)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 								.addComponent(txtRegLastName).addComponent(txtRegFirstName)))
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(lblRegPassword).addComponent(lblEmail2).addComponent(lblRegConfirm))
+				.addGroup(pnlInputLayout.createSequentialGroup()
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(lblRegPassword).addComponent(lblEmail).addComponent(lblRegConfirm))
 						.addGap(25, 25, 25)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(jPanel1Layout.createSequentialGroup().addComponent(btnRegRegister)
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(pnlInputLayout.createSequentialGroup().addComponent(btnRegRegister)
 										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28,
 												Short.MAX_VALUE)
 										.addComponent(btnRegCancel))
-								.addComponent(txtRegPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-								.addComponent(txtRegEmail)
-								.addComponent(txtRegConfirm, javax.swing.GroupLayout.Alignment.TRAILING))));
-		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(txtRegEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+								.addComponent(txtRegPassword).addComponent(txtRegConfirm))));
+		pnlInputLayout.setVerticalGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(pnlInputLayout.createSequentialGroup()
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(lblRegFirstName).addComponent(txtRegFirstName,
 										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(lblRegLastName)
 								.addComponent(txtRegLastName, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(lblEmail2).addComponent(txtRegEmail,
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(lblEmail).addComponent(txtRegEmail,
 										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(lblRegPassword).addComponent(txtRegPassword,
 										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(lblRegConfirm).addComponent(txtRegConfirm,
 										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, Short.MAX_VALUE)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+						.addGap(18, 20, Short.MAX_VALUE)
+						.addGroup(pnlInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(btnRegCancel).addComponent(btnRegRegister))));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(sepTitle)
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(sepTop)
 						.addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(sepTitle1).addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						.addComponent(sepBottom).addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
 								layout.createSequentialGroup().addContainerGap(28, Short.MAX_VALUE)
-										.addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										.addComponent(pnlInput, javax.swing.GroupLayout.PREFERRED_SIZE,
 												javax.swing.GroupLayout.DEFAULT_SIZE,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
 										.addGap(29, 29, 29)));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(lblTitle)
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(sepTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
+						.addComponent(sepTop, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 				.addGap(18, 18, 18)
-				.addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 22, Short.MAX_VALUE)
-				.addComponent(sepTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
+				.addComponent(pnlInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 20, Short.MAX_VALUE)
+				.addComponent(sepBottom, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
 						javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
 		pack();
@@ -209,87 +195,24 @@ public class RegisterGUI extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
+	private void txtRegConfirmActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void btnRegCancelActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void btnRegRegisterActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
 	private void txtRegEmailActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 	}
 
 	private void txtRegPasswordActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
-	}
-
-	private void txtRegConfirmActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void btnRegCancelActionPerformed(java.awt.event.ActionEvent evt) {
-		System.exit(0);
-	}
-
-	private void btnRegRegisterActionPerformed(java.awt.event.ActionEvent evt) {
-		Encrypt secure = new Encrypt();
-		boolean formClean = false;
-		String last = cleanInput(txtRegLastName.getText());
-		String first = cleanInput(txtRegFirstName.getText());
-		String em = cleanInput(txtRegEmail.getText());
-		char[] pass = txtRegPassword.getPassword();
-		char[] confirm = txtRegConfirm.getPassword();
-		String securePass = null;
-		formClean = checkForm(last, first, em, pass, confirm);
-
-		if (formClean) {
-			checkForm(last, first, em, pass, confirm);
-			try {
-				securePass = secure.encryptSHA256(pass.toString());
-			} catch (NoSuchAlgorithmException e) {
-				System.out.println("Encryption Error");
-				e.printStackTrace();
-			}
-			System.out.println(first + " " + last + " " + em + " " + securePass);
-			// User newUser = new User(last,first,em,password);
-		} else {
-			JOptionPane.showMessageDialog(null, "Error in Registation Input. Please try again.");
-		}
-
-	}
-
-	/**
-	 * 
-	 * @param input
-	 * @return true if input has greater than 4 length, and no white space
-	 */
-	public boolean inputClean(String input) {
-		return input != "" && input.length() > 2;
-	}
-
-	public boolean inputClean(char[] input) {
-		return input.length > 2;
-	}
-
-	/**
-	 * @param lastName
-	 * @param firstName
-	 * @param email
-	 * @param password
-	 * @return True of entered values are not null
-	 */
-	public boolean checkForm(String last, String first, String email, char[] pass, char[] conf) {
-		return !(inputClean(last) || 
-				inputClean(first) || 
-				inputClean(email) || 
-				inputClean(pass) || 
-				inputClean(pass)||
-				Arrays.equals(pass, conf));
-	}
-
-	/**
-	 * 
-	 * @param input
-	 * @return clean input
-	 */
-	public String cleanInput(String input) {
-		String result = input;
-		result.replaceAll(" ", "");
-		return result;
 	}
 
 	/**
@@ -339,21 +262,19 @@ public class RegisterGUI extends javax.swing.JFrame {
 	// Variables declaration - do not modify
 	private javax.swing.JButton btnRegCancel;
 	private javax.swing.JButton btnRegRegister;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JTextField jTextField1;
 	private javax.swing.JLabel lblEmail;
-	private javax.swing.JLabel lblEmail2;
 	private javax.swing.JLabel lblRegConfirm;
 	private javax.swing.JLabel lblRegFirstName;
 	private javax.swing.JLabel lblRegLastName;
 	private javax.swing.JLabel lblRegPassword;
 	private javax.swing.JLabel lblTitle;
-	private javax.swing.JSeparator sepTitle;
-	private javax.swing.JSeparator sepTitle1;
-	private javax.swing.JPasswordField txtRegConfirm;
+	private javax.swing.JPanel pnlInput;
+	private javax.swing.JSeparator sepBottom;
+	private javax.swing.JSeparator sepTop;
+	private javax.swing.JTextField txtRegConfirm;
 	private javax.swing.JTextField txtRegEmail;
 	private javax.swing.JTextField txtRegFirstName;
 	private javax.swing.JTextField txtRegLastName;
-	private javax.swing.JPasswordField txtRegPassword;
+	private javax.swing.JTextField txtRegPassword;
 	// End of variables declaration
 }
