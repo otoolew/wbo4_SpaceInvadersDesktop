@@ -1,11 +1,15 @@
 package edu.pitt.is1017.spaceinvaders;
 
+<<<<<<< HEAD
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+=======
+import java.sql.*;
+>>>>>>> origin/master
 
 /**
  * An entity which represents one of our space invader aliens.
@@ -30,6 +34,7 @@ public class User {
 	 *            appropriate class properties.
 	 */
 	public User(int uID) {
+<<<<<<< HEAD
 		userID = uID;
 		boolean found = false;
 		DbUtilities db = new DbUtilities();
@@ -56,6 +61,25 @@ public class User {
 		}else{
 			JOptionPane.showMessageDialog(null, "User ID NOT FOUND!");
 		}
+=======
+		DbUtilities db = new DbUtilities();
+		ResultSet rs = db.getResultSet("SELECT userID FROM users WHERE userID = " + uID);
+		try {
+
+			while (rs.next()) {
+				if (rs.getInt("userID") == uID) {
+					lastName = rs.getString("lastName");
+					firstName = rs.getString("firstName");
+					email = rs.getString("email");
+					password = rs.getString("password");
+					break;
+				}
+				System.out.println(lastName + " " + firstName + " " + password);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+>>>>>>> origin/master
 	}
 
 	/**
@@ -68,6 +92,7 @@ public class User {
 	 *            user password as an argument, retrieves data from the database
 	 */
 	public User(String em, String pass) {
+<<<<<<< HEAD
 		boolean found = false;
 		boolean match = false;
 		DbUtilities db = new DbUtilities();
@@ -94,6 +119,9 @@ public class User {
 		}else{
 			JOptionPane.showMessageDialog(null, "User ID NOT FOUND!");
 		}
+=======
+
+>>>>>>> origin/master
 	}
 
 	/**
@@ -110,6 +138,7 @@ public class User {
 	 *            user password as an argument, inserts data into database
 	 */
 	public User(String lName, String fName, String em, String pass) {
+<<<<<<< HEAD
 		
 		String encryptedPass = null;
 		try {
@@ -119,10 +148,13 @@ public class User {
 			e.printStackTrace();// Debug
 		}
 		
+=======
+>>>>>>> origin/master
 		DbUtilities db = new DbUtilities();
 		String sql = "INSERT INTO alieninvasion.users ";
 		sql = sql + "(lastName,firstName,email,password) ";
 		sql = sql + "VALUES ";
+<<<<<<< HEAD
 		sql = sql + "('" + lName + "','" + fName + "','" + em + "','" + encryptedPass + "');";
 		//System.out.println(sql);// Debug
 		db.executeQuery(sql);
@@ -151,5 +183,14 @@ public class User {
 
 	public void saveUserInfo() {
 		
+=======
+		sql = sql + "('" + lName + "','" + fName + "','" + fName + "','" + pass + "');";
+		System.out.println(sql);
+		db.executeQuery(sql);
+	}
+
+	public void saveUserInfo() {
+
+>>>>>>> origin/master
 	}
 }

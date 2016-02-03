@@ -199,6 +199,7 @@ public class RegisterGUI extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
+<<<<<<< HEAD
 	private void btnRegCancelActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 	}
@@ -213,6 +214,39 @@ public class RegisterGUI extends javax.swing.JFrame {
 
 	private void txtRegPasswordActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+=======
+	private void txtRegEmailActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void txtRegPasswordActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void btnRegCancelActionPerformed(java.awt.event.ActionEvent evt) {
+		System.exit(0);
+	}
+
+	private void btnRegRegisterActionPerformed(java.awt.event.ActionEvent evt) {
+
+		String last = cleanInput(txtRegLastName.getText());
+		String first = cleanInput(txtRegFirstName.getText());
+		String email = cleanInput(txtRegEmail.getText());
+		String pass = cleanInput(txtRegPassword.getText());
+		String confirm = cleanInput(txtRegConfirm.getText());
+		// TODO Check pass and confirm to equal the same:
+		// JOptionPane.showMessageDialog(null, "Error in Registation Input.
+		// Please try again.");
+	}
+
+	public String cleanInput(String input) {
+		String result = input;
+		result.replaceAll(" ", "");
+		result.replaceAll("'", "");
+		result.replaceAll("SELECT", "");
+		result.replaceAll("DELETE", "");
+		return result;
+>>>>>>> origin/master
 	}
 
 	/**
