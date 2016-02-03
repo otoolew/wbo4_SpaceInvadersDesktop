@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 /**
  * Provides methods for: 1. Retrieving data sets from MySQL databases. 2. For
  * executing UPDATE, INSERT, DELETE queries 3. For building tables to populate
@@ -124,10 +126,10 @@ public class DbUtilities {
 				createDbConnection();
 			}
 			Statement statement = this.conn.createStatement();
-			statement.executeUpdate(sql); // execute query
-
+			statement.executeUpdate(sql); // execute query					
 			return true;
 		} catch (Exception e) {
+			System.out.println("SQL ERROR");
 			e.printStackTrace(); // debug
 		}
 		return false;
