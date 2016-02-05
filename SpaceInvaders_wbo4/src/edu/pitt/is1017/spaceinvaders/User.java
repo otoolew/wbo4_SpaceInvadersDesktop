@@ -11,13 +11,59 @@ import javax.swing.JOptionPane;
  * @author William O'Toole
  */
 public class User {
+	// Variables
 	private int userID;
 	private String lastName;
 	private String firstName;
 	private String email;
 	private String password;
-	private boolean loggedIn = false;
+	private boolean loggedIn;
+	
+	// GETTERS and SETTERS
+	public String getLastName() {
+		return lastName;
+	}
 
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+	// END OF GETTERS AND SETTERS
 	/**
 	 * This constructor is only used to create an instance of a user that
 	 * already exists in the database.
@@ -58,7 +104,7 @@ public class User {
 	 *            user password as an argument, retrieves data from the database
 	 */
 	public User(String em, String pass) {
-	
+		loggedIn=false;
 		DbUtilities db = new DbUtilities();
 
 		ResultSet rs = db
@@ -106,9 +152,19 @@ public class User {
 		
 		//JOptionPane.showMessageDialog(null, "Registered User " + em);
 	}
-	
+	/**
+	 * Updates users table with values currently stored in class properties
+	 */
 	public void saveUserInfo() {
-		
+//		UPDATE table_name
+//		SET column1=value1,column2=value2,...
+//		WHERE some_column=some_value;
+		DbUtilities db = new DbUtilities();
+		String sql = "UPDATE alieninvasion.users ";
+		sql = sql + "SET lastName = '" + lastName + "',firstName = '" + firstName + "',email = '" + email + "',password = MD5('"+password+"')";
+		sql = sql + "WHERE userID = "+userID;		
+		System.out.println(sql);// Debug
+		db.executeQuery(sql);		
 	}
 	
 	public String toString(){
@@ -117,6 +173,7 @@ public class User {
 		str.append(lastName+"\n");
 		str.append(email+"\n");
 		str.append(password+"\n");
+		str.append("Login State: "+loggedIn);
 		return str.toString();	
 	}
 }

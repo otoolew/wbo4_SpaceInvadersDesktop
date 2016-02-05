@@ -1,7 +1,5 @@
 package edu.pitt.is1017.spaceinvaders;
 
-import javax.management.relation.RelationServiceNotRegisteredException;
-
 /**
  *
  * @author William O'Toole
@@ -164,17 +162,16 @@ public class LoginGUI extends javax.swing.JFrame {
 	private void txtLogPasswordActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 	}
-	
+
 	private void btnLogCancelActionPerformed(java.awt.event.ActionEvent evt) {
 		System.exit(0);
 	}
-	
+
 	private void btnLogLoginActionPerformed(java.awt.event.ActionEvent evt) {
 		String email = txtLogEmail.getText();
 		String password = txtLogPassword.getText();
 		User user = new User(email, password);
-		System.out.println("User Info:\n"+
-		user.toString());
+		System.out.println("User Info:\n" + user.toString());
 		clearForm();
 	}
 
@@ -183,6 +180,7 @@ public class LoginGUI extends javax.swing.JFrame {
 		RegisterGUI register = new RegisterGUI();
 		register.setVisible(true);
 	}
+
 	/**
 	 * Clears Login TextFields
 	 */
