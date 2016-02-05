@@ -162,7 +162,7 @@ public class User {
 		DbUtilities db = new DbUtilities();
 		String sql = "UPDATE alieninvasion.users ";
 		sql = sql + "SET lastName = '" + lastName + "',firstName = '" + firstName + "',email = '" + email + "',password = MD5('"+password+"')";
-		sql = sql + "WHERE userID = "+userID;		
+		sql = sql + "WHERE userID = '" + userID + "';";		
 		System.out.println(sql);// Debug
 		db.executeQuery(sql);		
 	}
