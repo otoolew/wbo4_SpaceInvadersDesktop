@@ -28,37 +28,29 @@ public class User {
 	 *            appropriate class properties.
 	 */
 	public User(int uID) {
-		userID = uID;
-		boolean found = false;
+		userID = uID;		
 		DbUtilities db = new DbUtilities();
-		ResultSet rs = db.getResultSet("SELECT * FROM users");	
-		try {			
-			while (rs.next()) {
-				int id = rs.getInt("userID"); // gets value of the userID field
-				if(id == userID){
-					System.out.println(id + " found. ");// Debug
-					found = true;
-					firstName = rs.getString("lastName"); // gets value of the lastName field
-					lastName = rs.getString("firstName"); // gets value of the firstName field
-					email = rs.getString("email"); // gets value of the email field
-					password = rs.getString("password"); // gets value of the password field
-					break;
-				}								
-			}
+		ResultSet rs = db.getResultSet("SELECT * FROM users WHERE userID = '"+uID+"';");	
+		try {
+			rs.next();
+			userID = rs.getInt("userID");
+			lastName = rs.getString("lastName");
+			firstName = rs.getString("firstName");
+			email = rs.getString("email");
+			password = rs.getString("password");
+			
+			JOptionPane.showMessageDialog(null, 
+					"Login Successful!"+
+					"\nWelcome Back "+firstName+" "+lastName);
 		} catch (SQLException e) {
 			System.out.println("SQL exception occured" + e);
 			e.printStackTrace();
 		}
-		if(found){
-			JOptionPane.showMessageDialog(null, "I found you "+firstName);
-		}else{
-			JOptionPane.showMessageDialog(null, "User ID NOT FOUND!");
-		}
 	}
 
 	/**
-	 * This constructor receives userID and password as arguments and checks
-	 * them against database
+	 * This constructor receives email and password as arguments and checks them
+	 * against database
 	 * 
 	 * @param receives
 	 *            user email as an argument, retrieves data from the database
@@ -66,31 +58,27 @@ public class User {
 	 *            user password as an argument, retrieves data from the database
 	 */
 	public User(String em, String pass) {
-		boolean found = false;
-		boolean match = false;
+	
 		DbUtilities db = new DbUtilities();
-		ResultSet rs = db.getResultSet("SELECT * FROM users");	
-		try {			
-			while (rs.next()) {
-				int id = rs.getInt("userID"); // gets value of the userID field
-				if(id == userID){
-					System.out.println(id + " found. ");// Debug
-					found = true;
-					firstName = rs.getString("lastName"); // gets value of the lastName field
-					lastName = rs.getString("firstName"); // gets value of the firstName field
-					email = rs.getString("email"); // gets value of the email field
-					password = rs.getString("password"); // gets value of the password field
-					break;
-				}								
-			}
+
+		ResultSet rs = db
+				.getResultSet("SELECT * FROM users WHERE email ='" + em + "' AND password = MD5('" + pass + "');");
+		try {
+			rs.next();
+			userID = rs.getInt("userID");
+			lastName = rs.getString("lastName");
+			firstName = rs.getString("firstName");
+			email = rs.getString("email");
+			password = rs.getString("password");
+			loggedIn = true;
+			JOptionPane.showMessageDialog(null, 
+					"Login Successful!"+
+					"\nWelcome Back "+firstName+" "+lastName);
 		} catch (SQLException e) {
 			System.out.println("SQL exception occured" + e);
-			e.printStackTrace();
-		}
-		if(found){
-			JOptionPane.showMessageDialog(null, "I found you "+firstName);
-		}else{
-			JOptionPane.showMessageDialog(null, "User ID NOT FOUND!");
+			JOptionPane.showMessageDialog(null, 
+					"Login Error"+
+					"\nPlease Try again");
 		}
 	}
 
@@ -108,20 +96,27 @@ public class User {
 	 *            user password as an argument, inserts data into database
 	 */
 	public User(String lName, String fName, String em, String pass) {
-		
 		DbUtilities db = new DbUtilities();
 		String sql = "INSERT INTO alieninvasion.users ";
 		sql = sql + "(lastName,firstName,email,password) ";
 		sql = sql + "VALUES ";
-		sql = sql + "('" + lName + "','" + fName + "','" + em + "','" + pass + "');";
-		//System.out.println(sql);// Debug
+		sql = sql + "('" + lName + "','" + fName + "','" + em + "'," + "MD5('"+pass+"')" + ");";
+		System.out.println(sql);// Debug
 		db.executeQuery(sql);
 		
 		//JOptionPane.showMessageDialog(null, "Registered User " + em);
 	}
-
-
+	
 	public void saveUserInfo() {
 		
+	}
+	
+	public String toString(){
+		StringBuilder str = new StringBuilder();
+		str.append(firstName+"\n");	
+		str.append(lastName+"\n");
+		str.append(email+"\n");
+		str.append(password+"\n");
+		return str.toString();	
 	}
 }
