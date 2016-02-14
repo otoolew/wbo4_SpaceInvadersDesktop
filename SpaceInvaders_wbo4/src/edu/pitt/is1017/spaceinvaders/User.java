@@ -147,7 +147,7 @@ public class User {
 		sql = sql + "(lastName,firstName,email,password) ";
 		sql = sql + "VALUES ";
 		sql = sql + "('" + lName + "','" + fName + "','" + em + "'," + "MD5('"+pass+"')" + ");";
-		System.out.println(sql);// Debug
+		//System.out.println(sql);// Debug
 		db.executeQuery(sql);
 		
 		//JOptionPane.showMessageDialog(null, "Registered User " + em);
