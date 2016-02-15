@@ -85,9 +85,9 @@ public class User {
 			email = rs.getString("email");
 			password = rs.getString("password");
 			
-			JOptionPane.showMessageDialog(null, 
-					"Login Successful!"+
-					"\nWelcome Back "+firstName+" "+lastName);
+//			JOptionPane.showMessageDialog(null, 
+//					"Login Successful!"+
+//					"\nWelcome Back "+firstName+" "+lastName);
 		} catch (SQLException e) {
 			System.out.println("SQL exception occured" + e);
 			e.printStackTrace();
@@ -148,9 +148,14 @@ public class User {
 		sql = sql + "VALUES ";
 		sql = sql + "('" + lName + "','" + fName + "','" + em + "'," + "MD5('"+pass+"')" + ");";
 		//System.out.println(sql);// Debug
-		db.executeQuery(sql);
+		boolean successfulQuery = db.executeQuery(sql);
 		
-		//JOptionPane.showMessageDialog(null, "Registered User " + em);
+		if(successfulQuery){
+			JOptionPane.showMessageDialog(null, "Registered User " + em);
+		}else{
+			JOptionPane.showMessageDialog(null, "Registeration Failed!");
+		}
+		
 	}
 	/**
 	 * Updates users table with values currently stored in class properties
@@ -163,8 +168,14 @@ public class User {
 		String sql = "UPDATE alieninvasion.users ";
 		sql = sql + "SET lastName = '" + lastName + "',firstName = '" + firstName + "',email = '" + email + "',password = MD5('"+password+"')";
 		sql = sql + "WHERE userID = '" + userID + "';";		
-		System.out.println(sql);// Debug
-		db.executeQuery(sql);		
+		//System.out.println(sql);// Debug
+		db.executeQuery(sql);
+		boolean successfulQuery = db.executeQuery(sql);
+		if(successfulQuery){
+			JOptionPane.showMessageDialog(null, "User Updated Successfully!");
+		}else{
+			JOptionPane.showMessageDialog(null, "User Update Failed!");
+		}
 	}
 	
 	public String toString(){

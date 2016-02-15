@@ -30,15 +30,16 @@ import javax.swing.JPanel;
  * 
  * @author Kevin Glass
  */
+@SuppressWarnings("serial")
 public class Game extends Canvas {
 	/** The stragey that allows us to use accelerate page flipping */
 	private BufferStrategy strategy;
 	/** True if the game is currently "running", i.e. the game loop is looping */
 	private boolean gameRunning = true;
 	/** The list of all the entities that exist in our game */
-	private ArrayList entities = new ArrayList();
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	/** The list of entities that need to be removed from the game this loop */
-	private ArrayList removeList = new ArrayList();
+	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 	/** The entity representing the player */
 	private Entity ship;
 	/** The speed at which the player's ship should move (pixels/sec) */
@@ -49,6 +50,15 @@ public class Game extends Canvas {
 	private long firingInterval = 500;
 	/** The number of aliens left on the screen */
 	private int alienCount;
+	
+	/**
+	 * Menu Set Up
+	 * @author JACK
+	 */
+	private enum STATE{
+		MENU,GAME
+	}
+	private STATE State = STATE.MENU;
 	
 	/** The message to display which waiting for a key press */
 	private String message = "";
