@@ -1,64 +1,39 @@
-INFSCI 1017 – Database Systems – Spring 2016
-Homework 3 – JDBC + Java GUI
+Assignment #4
 
+Task 1 (5 points): This task, should you chose to accept it is as follows - whenever player logs in, instead of displaying a message your program should launch the game.
 
-Connect to an external database server with MySQL Workbench using the following settings and credentials:
-1.	Connection name: ***********
-2.	Hostname:  ***********
-3.	Port: ****
-4.	Username: *********
-5.	Password: *********
-Once you are connected, you should see one database under the “SCHEMAS” section of your MySQL Workbench – alieninvasion.  
+Task 2 (10 points): If you received any feedback about issues with your program from the GSA, make sure you fix them before continuing.  If you did not receive any comments and your previous assignment was perfect, you get free 10 points (Figure 2)
 
-Task 1 (5 points): Import SpaceInvaders game code into a new Eclipse project.  The source code is available at https://drive.google.com/file/d/0B1igopmj-Vh6SE8tV2RNTXY0d1U/view?usp=sharing
-Rename your project to SpaceInvaders_<your Pitt User Name>.  For example, my Pitt user name is dmb72, so my project would be named SpaceInvaders_dmb72
+Task 3 (30 points): Create a new class ScoreTracker.  
+	-ScoreTracker(user:User) constructor:
+		Receives a user object (logged in user) as an argument and sets the corresponding class property
+		Initializes currentScore to zero 
+		Initializes gameID to a UUID - universally unique identifier (https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
+		Retrieves the value of the highest score for any game that the user has ever played (QUERY)
+		recordScore(point:int) - records running score
+	-You must call this method every time you fire at the alien ships.
+		point parameter must be either -1 or 1.  In other words, every time you fire, if you hit an alien ship, add one point to the score.  If you miss, subtract one point.
+		Every time you call recordScore() must:
+		Update currentScore property (add or subtract 1 point)
+		INSERT currentScore into runningscores table
+	-recordFinalScore()
+		When the game is over, INSERT the final value of currentScore into finalscores table
+		Generate getters for currentScore and highestScore properties
+		finalscores table
+	-Generate getters for currentScore and highestScore properties
 
-Task 2 (5 points): Download MySqlConnector library and add it to your SpaceInvaders project.
+Task 4 (35 points)
+	-Identify places in existing code where projectiles are fired at the alien ships and the logic of the program identifies hits. The point of this part of the assignment is that you actually go through the provided code and understand how it works.  You can ask your classmates for help (if they are willing to help you), but you cannot ask the instructor or the GSA.
+	-If there is a hit, call recordScore(1)
+	-If a projectile was fired, but no hit was recorded, call recordScore(-1)
+	-When the game is complete - either you won or got destroyed by the evil alien invaders (Figure 3) - you need to call recordFinalScore()
+	-Hint #1: when you declare an instance of ScoreTracker, the object should be a global variable.  
+	-Hint #2: you have to re-instantiate the ScoreTracker object every time you start a new game.
 
-Task 3 (15 points): Import DBUtilities class available here: https://drive.google.com/file/d/0B1igopmj-Vh6THhRWlRtUEtvalk/view?usp=sharing
-	Modify the class so that it allows you to connect to the alieninvasion database.
-	Add a new public method closeConnection() that closes connection to the database.
-	Make sure that any time you are done using your database connection in your program, you call the closeConnection() method clean up.  Remember, you only need to close connections after select queries.
-
-Task 4 (20 points):  Create a new class called LoginGUI.  This is going to be your login screen.  The screen should look like this: 
- 
-	Login button should validate login against data in the database and (for now) display either a confirmation or an error message using JOptionPane.showMessageDialog()
-	Cancel button should close this screen and exit the game.
-	Register button does not do anything (yet)
-Note:  This class only handles GUI - you should not have any business logic associated with the event handlers in this class.
-
-Task 5 (30 points): Create a new class User.  
-
-User
--userID:int
--lastName:String
--firstName:String
--email:String
--password:String
--loggedIn:boolean = false;
-+User(userID:int)
-+User(email:String, password:String)
-+User(lastName:String, firstName:String,email:String,password:String)
-+saveUserInfo()
-
-	User(userID:int) receives userID as an argument, retrieves data from the database (select from users) for that userID and sets appropriate class properties.  This constructor is only used to create an instance of a user that already exists in the database.
-	User(email:String, password:String) receives userID and password as arguments and checks them against database (select from users)  
-	If matching entry exists:
-	sets appropriate class properties
-	sets loggedIn property to true
-	displays confirmation message using JOptionPane.showMessageDialog()
-	If matching entry does not exist:
-	sets loggedIn property to false
-	displays error (invalid login credentials) message using JOptionPane.showMessageDialog()
-	User(lastName:String, firstName:String,email:String,password:String) sets appropriate class properties and saves user entry to the database.  This constructor is only called when you are creating an instance of a new user - registering a new game player (insert into users).
-	saveUserInfo() - updates users table with values currently stored in class properties (update users set …).
-	Generate getters and setters for all properties except for userID - userID only needs a getter.
-
-Task 6 (20 points): Create a new class called RegisterGUI.  This is going to be your login screen.  The screen should look like this: 
-
- 
-	Register button should save user’s information to the database (think about which constructor of the User class to call.
-	Cancel button should close Registration screen.
-
-Due on Friday, February 5 by midnight.
-
+Task 5 (20 points)
+	-When the player finishes a game, display a message that shows the following information:
+	the highest scores for you.
+	SELECT scoreValue FROM finalscores WHERE fk_userID = [Your User ID] AND gameID = '[Current Game ID]';
+	the name and the highest scores for the leader (another player who has scores higher than you).
+	SELECT lastName, firstName, MAX(scoreValue) FROM finalscores JOIN users ON fk_userID = userID GROUP BY lastName, firstName
+	You can use JOptionPane.showMessageDialog()
