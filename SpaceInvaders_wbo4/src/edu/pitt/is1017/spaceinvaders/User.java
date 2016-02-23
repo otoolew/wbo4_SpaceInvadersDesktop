@@ -2,12 +2,16 @@ package edu.pitt.is1017.spaceinvaders;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
 
 /**
- * An entity which represents one of our space invader aliens.
+ * Assignment 3 ERRORS Corrected
+ * closeConnection() is not called. (Fixed on lines 96, 131, 161, 182) 
+ * The userID is not a string. So, in select query, the userID should not be enclosed within ' '. (Fixed at line 84)
+ * Second User() is incomplete. (Need more direction)
  * 
+ * An entity which represents one of our space invader aliens.
+ 
  * @author William O'Toole
  */
 public class User {
@@ -76,7 +80,7 @@ public class User {
 	public User(int uID) {
 		userID = uID;		
 		DbUtilities db = new DbUtilities();
-		ResultSet rs = db.getResultSet("SELECT * FROM users WHERE userID = '"+uID+"';");	
+		ResultSet rs = db.getResultSet("SELECT * FROM users WHERE userID = "+uID+";");	
 		try {
 			rs.next();
 			userID = rs.getInt("userID");
@@ -84,14 +88,11 @@ public class User {
 			firstName = rs.getString("firstName");
 			email = rs.getString("email");
 			password = rs.getString("password");
-			
-//			JOptionPane.showMessageDialog(null, 
-//					"Login Successful!"+
-//					"\nWelcome Back "+firstName+" "+lastName);
 		} catch (SQLException e) {
 			System.out.println("SQL exception occured" + e);
 			e.printStackTrace();
 		}
+		db.closeConnection();//Assignment 3 Correction
 	}
 
 	/**
@@ -118,14 +119,15 @@ public class User {
 			password = rs.getString("password");
 			loggedIn = true;
 			JOptionPane.showMessageDialog(null, 
-					"Login Successful!"+
-					"\nWelcome Back "+firstName+" "+lastName);
+					"Login Confirmed");
 		} catch (SQLException e) {
 			System.out.println("SQL exception occured" + e);
 			JOptionPane.showMessageDialog(null, 
 					"Login Error"+
 					"\nPlease Try again");
+			loggedIn = false;
 		}
+		db.closeConnection();//Assignment 3 Correction
 	}
 
 	/**
@@ -155,7 +157,7 @@ public class User {
 		}else{
 			JOptionPane.showMessageDialog(null, "Registeration Failed!");
 		}
-		
+		db.closeConnection();//Assignment 3 Correction
 	}
 	/**
 	 * Updates users table with values currently stored in class properties
@@ -176,6 +178,7 @@ public class User {
 		}else{
 			JOptionPane.showMessageDialog(null, "User Update Failed!");
 		}
+		db.closeConnection();
 	}
 	
 	public String toString(){
@@ -185,6 +188,6 @@ public class User {
 		str.append(email+"\n");
 		str.append(password+"\n");
 		str.append("Login State: "+loggedIn);
-		return str.toString();	
+		return str.toString();
 	}
 }

@@ -1,7 +1,10 @@
 package edu.pitt.is1017.spaceinvaders;
 
+import javax.swing.JOptionPane;
+
 /**
- *
+ * Assignment 3 ERRORS Corrected
+ * Show message using JOptionPane in action listner of login button(Fixed line 177 - 192 )
  * @author William O'Toole
  */
 public class LoginGUI extends javax.swing.JFrame {
@@ -171,10 +174,23 @@ public class LoginGUI extends javax.swing.JFrame {
 		String email = txtLogEmail.getText();
 		String password = txtLogPassword.getText();
 		User user = new User(email, password);
-		System.out.println("User Info:\n" + user.toString());
-		clearForm();
+		if(user.isLoggedIn()){
+			JOptionPane.showMessageDialog(null, 
+					"Welcome back "+user.getFirstName()+".");
+			Thread t = new Thread("NewGameThread") {
+				public void run() {
+					Game game = new Game(user.getUserID());
+					game.gameLoop();
+				}
+			};
+			t.start();
+		}else{
+			JOptionPane.showMessageDialog(null, 
+					"Login Failed"+
+					"\nPlease try again.");
+			clearForm();
+		}		
 	}
-
 	private void btnLogRegisterActionPerformed(java.awt.event.ActionEvent evt) {
 		clearForm();
 		RegisterGUI register = new RegisterGUI();

@@ -76,7 +76,7 @@ public class Game extends Canvas {
 	/**
 	 * Construct our game and set it running.
 	 */
-	public Game() {
+	public Game(int uID) {
 		// create a frame to contain our game
 		JFrame container = new JFrame("Space Invaders 101");
 		
@@ -442,19 +442,19 @@ public class Game extends Canvas {
 		}
 	}
 	
-	/**
-	 * The entry point into the game. We'll simply create an
-	 * instance of class which will start the display and game
-	 * loop.
-	 * 
-	 * @param argv The arguments that are passed into our game
-	 */
-	public static void main(String argv[]) {
-		Game g =new Game();
-
-		// Start the main game loop, note: this method will not
-		// return until the game has finished running. Hence we are
-		// using the actual main thread to run the game.
-		g.gameLoop();
-	}
+//	/**
+//	 * The entry point into the game. We'll simply create an
+//	 * instance of class which will start the display and game
+//	 * loop.
+//	 * 
+//	 * @param argv The arguments that are passed into our game
+//	 */
+//	public static void main(String argv[]) {
+//		Game g =new Game(1);
+//
+//		// Start the main game loop, note: this method will not
+//		// return until the game has finished running. Hence we are
+//		// using the actual main thread to run the game.
+//		g.gameLoop();
+//	}
 }
