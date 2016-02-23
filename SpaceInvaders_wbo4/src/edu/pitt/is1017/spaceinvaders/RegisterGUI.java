@@ -225,10 +225,9 @@ public class RegisterGUI extends javax.swing.JFrame {
 		String confirm = cleanInput(txtRegConfirm.getText());
 		
 		if(pass.equals(confirm)){			
-			User newUser = new User(last, first, email, pass);									
+			User newUser = new User(last, first, email, pass);	
 			System.exit(0);			
-		}else{
-			JOptionPane.showMessageDialog(null, "Result "+pass.equals(confirm));			
+		}else{				
 			clearForm();	
 		}			
     }                                              

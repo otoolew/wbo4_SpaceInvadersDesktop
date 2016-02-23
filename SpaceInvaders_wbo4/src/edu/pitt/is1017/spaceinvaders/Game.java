@@ -30,15 +30,16 @@ import javax.swing.JPanel;
  * 
  * @author Kevin Glass
  */
+@SuppressWarnings("serial")
 public class Game extends Canvas {
 	/** The stragey that allows us to use accelerate page flipping */
 	private BufferStrategy strategy;
 	/** True if the game is currently "running", i.e. the game loop is looping */
 	private boolean gameRunning = true;
 	/** The list of all the entities that exist in our game */
-	private ArrayList entities = new ArrayList();
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	/** The list of entities that need to be removed from the game this loop */
-	private ArrayList removeList = new ArrayList();
+	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 	/** The entity representing the player */
 	private Entity ship;
 	/** The speed at which the player's ship should move (pixels/sec) */
@@ -49,6 +50,15 @@ public class Game extends Canvas {
 	private long firingInterval = 500;
 	/** The number of aliens left on the screen */
 	private int alienCount;
+	
+	/**
+	 * Menu Set Up
+	 * @author JACK
+	 */
+	private enum STATE{
+		MENU,GAME
+	}
+	private STATE State = STATE.MENU;
 	
 	/** The message to display which waiting for a key press */
 	private String message = "";
@@ -66,7 +76,7 @@ public class Game extends Canvas {
 	/**
 	 * Construct our game and set it running.
 	 */
-	public Game() {
+	public Game(int uID) {
 		// create a frame to contain our game
 		JFrame container = new JFrame("Space Invaders 101");
 		
@@ -432,19 +442,19 @@ public class Game extends Canvas {
 		}
 	}
 	
-	/**
-	 * The entry point into the game. We'll simply create an
-	 * instance of class which will start the display and game
-	 * loop.
-	 * 
-	 * @param argv The arguments that are passed into our game
-	 */
-	public static void main(String argv[]) {
-		Game g =new Game();
-
-		// Start the main game loop, note: this method will not
-		// return until the game has finished running. Hence we are
-		// using the actual main thread to run the game.
-		g.gameLoop();
-	}
+//	/**
+//	 * The entry point into the game. We'll simply create an
+//	 * instance of class which will start the display and game
+//	 * loop.
+//	 * 
+//	 * @param argv The arguments that are passed into our game
+//	 */
+//	public static void main(String argv[]) {
+//		Game g =new Game(1);
+//
+//		// Start the main game loop, note: this method will not
+//		// return until the game has finished running. Hence we are
+//		// using the actual main thread to run the game.
+//		g.gameLoop();
+//	}
 }

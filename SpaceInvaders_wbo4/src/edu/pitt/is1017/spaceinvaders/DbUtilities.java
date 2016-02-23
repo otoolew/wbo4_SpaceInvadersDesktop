@@ -105,7 +105,7 @@ public class DbUtilities {
 										// connection
 			}
 			Statement statement = this.conn.createStatement();
-			return statement.executeQuery(sql); // Return ResultSet
+			return statement.executeQuery(sql); // Return ResultSet		
 		} catch (Exception e) {
 			e.printStackTrace(); // debug
 		}
