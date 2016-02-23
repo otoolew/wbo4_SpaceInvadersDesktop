@@ -68,15 +68,8 @@ public class DbUtilities {
 			// Queries Slide 15
 			String mySqlConn = "jdbc:mysql://" + this.hostName + "/" + this.dbName + "?user=" + this.dbUserName
 					+ "&password=" + this.dbPassword;
-			System.out.println("Establishing DB connection:\n" + mySqlConn);// hostName
-																			// =
-																			// "+hostName+"\ndbName
-																			// =
-																			// "+dbName+"\ndbUserName
-																			// =
-																			// "+dbUserName+"\ndbPassword
-																			// =
-																			// "+dbPassword+"\n");
+			//System.out.println("Establishing DB connection:\n" + mySqlConn);
+			System.out.println("Establishing DB connection...");														
 			// Instantiate the MySQL database connector driver
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			// Connect to the database

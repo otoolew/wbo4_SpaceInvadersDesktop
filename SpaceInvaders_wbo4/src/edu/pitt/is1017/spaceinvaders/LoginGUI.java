@@ -179,7 +179,8 @@ public class LoginGUI extends javax.swing.JFrame {
 					"Welcome back "+user.getFirstName()+".");
 			Thread t = new Thread("NewGameThread") {
 				public void run() {
-					Game game = new Game(user.getUserID());
+					ScoreTracker score = new ScoreTracker(user);
+					Game game = new Game(user,score);
 					game.gameLoop();
 				}
 			};
