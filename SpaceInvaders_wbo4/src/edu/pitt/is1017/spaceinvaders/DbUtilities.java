@@ -98,6 +98,7 @@ public class DbUtilities {
 										// connection
 			}
 			Statement statement = this.conn.createStatement();
+			
 			return statement.executeQuery(sql); // Return ResultSet		
 		} catch (Exception e) {
 			e.printStackTrace(); // debug
@@ -114,12 +115,14 @@ public class DbUtilities {
 	 * @return true if execution succeeded, false if failed
 	 */
 	public boolean executeQuery(String sql) {
+	
 		try {
 			if (this.conn == null) {
 				createDbConnection();
 			}
 			Statement statement = this.conn.createStatement();
-			statement.executeUpdate(sql); // execute query					
+			statement.executeUpdate(sql); // execute query	
+			closeStatement(statement);
 			return true;
 		} catch (Exception e) {
 			System.out.println("SQL ERROR");
@@ -176,7 +179,7 @@ public class DbUtilities {
 	public boolean closeConnection() {
 		try {
 			this.conn.close();
-			System.out.println(" Database Connection Closed Successfully");
+			System.out.println("Database Connection Closed Successfully");
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Failed to Close Database Connection");

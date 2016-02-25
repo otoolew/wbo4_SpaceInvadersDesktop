@@ -41,6 +41,7 @@ public class ShotEntity extends Entity {
 		// if we shot off the screen, remove ourselfs
 		if (y < -100) {
 			game.removeEntity(this);
+			game.score(-1);
 		}
 	}
 	
@@ -67,8 +68,6 @@ public class ShotEntity extends Entity {
 			game.notifyAlienKilled();
 			game.score(1);
 			used = true;
-		}else{// Missed!
-			game.score(0);
 		}
 	}
 }

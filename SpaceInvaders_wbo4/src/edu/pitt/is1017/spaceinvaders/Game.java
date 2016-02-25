@@ -66,12 +66,12 @@ public class Game extends Canvas {
 	 * a game event
 	 */
 	private boolean logicRequiredThisLoop = false;
-//	/** the Player of the game */
-//	private User player;
+	// /** the Player of the game */
+	// private User player;
 	/** The score tracker */
 	private ScoreTracker score;
 	private User player;
-	
+
 	/**
 	 * Construct our game and set it running.
 	 */
@@ -104,6 +104,7 @@ public class Game extends Canvas {
 		// do we'd like to exit the game
 		container.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
+				score.displayScores();
 				System.exit(0);
 			}
 		});
@@ -186,6 +187,7 @@ public class Game extends Canvas {
 	public void notifyDeath() {
 		message = "Oh no! They got you, try again?";
 		waitingForKeyPress = true;
+		score.displayScores();
 	}
 
 	/**
@@ -194,6 +196,7 @@ public class Game extends Canvas {
 	public void notifyWin() {
 		message = "Well done! You Win!";
 		waitingForKeyPress = true;
+		score.displayScores();
 	}
 
 	/**
@@ -234,7 +237,7 @@ public class Game extends Canvas {
 		// if we waited long enough, create the shot entity, and record the
 		// time.
 		lastFire = System.currentTimeMillis();
-		ShotEntity shot = new ShotEntity(this, "sprites/shot.gif", ship.getX() + 10, ship.getY() - 30);
+		ShotEntity shot = new ShotEntity(this, "sprites/shot.gif", ship.getX() + 10, ship.getY() - 30);		
 		entities.add(shot);
 	}
 
@@ -349,9 +352,14 @@ public class Game extends Canvas {
 			}
 		}
 	}
-	protected void score(int point){
+	/**
+	 * 
+	 * @param point
+	 */
+	public void score(int point) {
 		score.recordScore(point);
 	}
+
 	/**
 	 * A class to handle keyboard input from the user. The class handles both
 	 * dynamic input during game play, i.e. left/right and shoot, and more
@@ -445,7 +453,8 @@ public class Game extends Canvas {
 			}
 			// if we hit escape, then quit the game
 			if (e.getKeyChar() == 27) {
-				System.exit(0);
+				score.displayScores();
+				System.exit(0);			
 			}
 		}
 	}
