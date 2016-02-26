@@ -70,13 +70,18 @@ public class Game extends Canvas {
 	// private User player;
 	/** The score tracker */
 	private ScoreTracker score;
+	
+
 	private User player;
 
 	/**
 	 * Construct our game and set it running.
 	 */
-	public Game(User user, ScoreTracker sc) {
+	public Game(User user) {
+		
 		player = user;
+		ScoreTracker sc = new ScoreTracker(player);
+		
 		score = sc;
 		// create a frame to contain our game
 		JFrame container = new JFrame("Space Invaders 101");
@@ -103,8 +108,7 @@ public class Game extends Canvas {
 		// add a listener to respond to the user closing the window. If they
 		// do we'd like to exit the game
 		container.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				score.displayScores();
+			public void windowClosing(WindowEvent e) {				
 				System.exit(0);
 			}
 		});
@@ -185,9 +189,11 @@ public class Game extends Canvas {
 	 * Notification that the player has died.
 	 */
 	public void notifyDeath() {
+		score.recordFinalScore();
 		message = "Oh no! They got you, try again?";
 		waitingForKeyPress = true;
 		score.displayScores();
+		score.setCurrentScore(0);
 	}
 
 	/**
@@ -196,7 +202,9 @@ public class Game extends Canvas {
 	public void notifyWin() {
 		message = "Well done! You Win!";
 		waitingForKeyPress = true;
+		score.recordFinalScore();
 		score.displayScores();
+		score.setCurrentScore(0);
 	}
 
 	/**
@@ -356,10 +364,16 @@ public class Game extends Canvas {
 	 * 
 	 * @param point
 	 */
-	public void score(int point) {
+	public void registerScore(int point) {
 		score.recordScore(point);
 	}
+	public ScoreTracker getScore() {
+		return score;
+	}
 
+	public void setScore(ScoreTracker score) {
+		this.score = score;
+	}
 	/**
 	 * A class to handle keyboard input from the user. The class handles both
 	 * dynamic input during game play, i.e. left/right and shoot, and more

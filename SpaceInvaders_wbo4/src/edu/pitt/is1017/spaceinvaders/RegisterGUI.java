@@ -1,7 +1,5 @@
 package edu.pitt.is1017.spaceinvaders;
-
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author William O'Toole
@@ -226,7 +224,7 @@ public class RegisterGUI extends javax.swing.JFrame {
 		
 		if(pass.equals(confirm)){			
 			User newUser = new User(last, first, email, pass);	
-			System.exit(0);			
+			setVisible(false);			
 		}else{				
 			clearForm();	
 		}			

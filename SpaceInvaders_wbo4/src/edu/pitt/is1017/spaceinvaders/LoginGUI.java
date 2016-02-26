@@ -178,9 +178,8 @@ public class LoginGUI extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null, 
 					"Welcome back "+user.getFirstName()+".");
 			Thread t = new Thread("NewGameThread") {
-				public void run() {
-					ScoreTracker score = new ScoreTracker(user);
-					Game game = new Game(user,score);
+				public void run() {					
+					Game game = new Game(user);
 					game.gameLoop();
 				}
 			};
