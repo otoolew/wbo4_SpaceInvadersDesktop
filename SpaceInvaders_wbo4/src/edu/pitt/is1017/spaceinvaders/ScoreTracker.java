@@ -1,6 +1,7 @@
 package edu.pitt.is1017.spaceinvaders;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 import javax.swing.JOptionPane;
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
  * -gameID:String +ScoreTracker(user:User) +recordScore(point:int)
  * +recordFinalScore();
  * 
- * @author Jack
+ * @author William O'Toole
  */
 public class ScoreTracker {
 	private User user;
@@ -77,8 +78,7 @@ public class ScoreTracker {
 	 * @param point
 	 */
 	public void recordScore(int point) {
-		int scoreType;
-		
+		int scoreType;	
 		if (point == -1) {
 			scoreType = 0;
 			this.currentScore--;
@@ -91,10 +91,7 @@ public class ScoreTracker {
 		sql = sql + "VALUES('" + gameID + "'," + scoreType + "," + this.getCurrentScore() + "," + user.getUserID() + ",NOW());";
 		System.out.println(sql);
 		db.executeQuery(sql);
-		db.closeConnection();		
-		// INSERT INTO
-		// alieninvasion.runningscores(`gameID`,`scoreType`,`scoreValue`,`fk_userID`,`dateTimeEntered`)
-		// VALUES("252dff46-2197-48c4-a4dd-d371597c2645",1,34,"98",NOW());
+		db.closeConnection();			
 	}
 
 	/**
@@ -103,21 +100,46 @@ public class ScoreTracker {
 	 */
 	public void recordFinalScore() {
 		DbUtilities db = new DbUtilities();
-		String sql = "INSERT INTO finalscores(`scoreID`,`gameID`,`scoreValue`,`fk_userID`,`dateTimeEntered`)";
-		sql = sql + "VALUES('" + gameID + "'," + this.getCurrentScore() + "," + user.getUserID() + ",NOW());";
+		String sql = "INSERT INTO finalscores(`gameID`,`scoreValue`,`fk_userID`,`dateTimeEntered`)";
+		sql = sql + "VALUES('" + gameID + "'," + this.getCurrentScore() + "," + user.getUserID() + ",NOW());";		
 		System.out.println(sql);
 		db.executeQuery(sql);
 		db.closeConnection();		
 	}
-	public void displayScores(){
+	/**
+	 * JOptionPane to display Scores
+	 */
+	public void displayScores(){	
+		String topPlayer =null;				
 		DbUtilities db = new DbUtilities();
-		String sql = "SELECT lastName, firstName, MAX(scoreValue) FROM finalscores JOIN users ON fk_userID = userID GROUP BY lastName, firstName ORDER BY `MAX(scoreValue)` DESC;";		
-		ResultSet rs = db.getResultSet(sql);
+		String sql = "SELECT lastName, firstName, MAX(scoreValue) FROM finalscores JOIN users ON fk_userID = userID GROUP BY lastName, firstName ORDER BY `MAX(scoreValue)` DESC;";
 		
+		ResultSet topQuery = db.getResultSet(sql);
+		try {
+			topQuery.next();			
+			String lastName = topQuery.getString("lastName");
+			String firstName = topQuery.getString("firstName");
+			int topScore = topQuery.getInt("MAX(scoreValue)");
+			topPlayer = lastName+" "+firstName+": "+topScore;
+			
+		} catch (SQLException e) {
+			System.out.println("SQL exception occured" + e);
+			e.printStackTrace();
+		}
 		
-		db.closeResultSet(rs);
+		sql = "SELECT MAX(scoreValue) FROM finalscores WHERE fk_userID ="+ user.getUserID()+";";
+		ResultSet playerQuery = db.getResultSet(sql);
+		try {
+			playerQuery.next();				
+			highestScore = playerQuery.getInt("MAX(scoreValue)");					
+		} catch (SQLException e) {
+			System.out.println("SQL exception occured" + e);
+			e.printStackTrace();
+		}
+		
 		db.closeConnection();
-		JOptionPane.showMessageDialog(null,sql);
+		String displayMessage = "Current Score: "+currentScore+"\nYour Highest Score: "+highestScore+"\nTop Player: "+topPlayer;
+		JOptionPane.showMessageDialog(null,displayMessage);
 	}
 
 }
